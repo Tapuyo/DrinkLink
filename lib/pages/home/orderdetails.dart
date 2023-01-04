@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:driklink/pages/home/ordermoredetailed.dart';
+import 'package:driklink/pages/login/help.dart';
 import 'package:driklink/utils/constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -926,6 +927,55 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ),
                     ),
                   ),
+                  InkWell(
+                          onTap: () {
+                            if (_scaffoldKey.currentState.isEndDrawerOpen) {
+                              _scaffoldKey.currentState.openDrawer();
+                            } else {
+                              _scaffoldKey.currentState.openEndDrawer();
+                            }
+
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => help()),
+                            );
+                          },
+                          child: Container(
+                            height: 50,
+                            padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  MaterialCommunityIcons.help_circle_outline,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                new Expanded(
+                                  flex: 1,
+                                  child: new SingleChildScrollView(
+                                    scrollDirection:
+                                        Axis.horizontal, //.horizontal
+                                    child: new Text(
+                                      'Help Centre',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                   Spacer(),
                   // Container(
                   //   padding: EdgeInsets.fromLTRB(0, 0, 10, 50),

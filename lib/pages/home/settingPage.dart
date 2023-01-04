@@ -2,6 +2,7 @@ import 'package:driklink/data/pref_manager.dart';
 import 'package:driklink/pages/Api.dart';
 import 'package:driklink/pages/home/home.dart';
 import 'package:driklink/pages/home/savecard.dart';
+import 'package:driklink/pages/login/signin.dart';
 import 'package:driklink/utils/constants.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -670,12 +671,14 @@ class _setPageState extends State<setPage> {
   sendOTP() async {
     _loadPreview();
     print(otpcode);
-    String username = 'leepe@drinklinkph.com';
-    String password = 'P@ssw0rd';
+    // String username = 'leepe@drinklinkph.com';
+    // String password = 'P@ssw0rd';
+    String username = 'leepeapp1@gmail.com';
+    String password = 'ioafduzyrulejpqj';
     String bemail = billemail.text.trim();
 
     final smtpServer =
-        SmtpServer('plesk5600.is.cc', username: username, password: password);
+        SmtpServer('smtp.gmail.com', username: username, password: password);
 
     final message = Message()
       ..from = Address(username, bemail)
@@ -896,12 +899,16 @@ class _setPageState extends State<setPage> {
           backgroundColor: Color(0xFF2b2b61),
           actions: <Widget>[
             TextButton(
+              style: flatButtonStyle,
               child: Text(
                 'OK',
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
               onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIn()),
+                );
               },
             ),
           ],
@@ -1151,6 +1158,7 @@ class _setPageState extends State<setPage> {
           backgroundColor: Color(0xFF2b2b61),
           actions: <Widget>[
             TextButton(
+              style: flatButtonStyle,
               child: Text(
                 'No',
                 style: TextStyle(color: Colors.white, fontSize: 18),
@@ -1160,6 +1168,7 @@ class _setPageState extends State<setPage> {
               },
             ),
             TextButton(
+              style: flatButtonStyle,
               child: Text(
                 'Yes',
                 style: TextStyle(color: Colors.white, fontSize: 18),

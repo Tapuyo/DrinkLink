@@ -32,8 +32,6 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - Flutter (1.0.0)
-  - flutter_webview_plugin (0.0.1):
-    - Flutter
   - GoogleDataTransport (9.2.0):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
@@ -62,17 +60,22 @@ PODS:
   - nanopb/encode (2.30909.0)
   - path_provider (0.0.1):
     - Flutter
+  - printing (1.0.0):
+    - Flutter
   - PromisesObjC (2.1.1)
   - shared_preferences (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
-  - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - printing (from `.symlinks/plugins/printing/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
@@ -93,12 +96,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
-  flutter_webview_plugin:
-    :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  printing:
+    :path: ".symlinks/plugins/printing/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
   Firebase: a3ea7eba4382afd83808376edb99acdaff078dcf
@@ -109,13 +114,14 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 004915af170935e3a583faefd5f8bc851afc220f
   FirebaseMessaging: cc9f40f5b7494680f3844d08e517e92aa4e8d9f7
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  printing: eafa00acb682c0ca029d4d98d0798f55a1e27102
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
 PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
 

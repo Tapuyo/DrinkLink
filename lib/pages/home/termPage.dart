@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
+import 'package:dio/dio.dart';
 import 'package:driklink/data/pref_manager.dart';
 import 'package:driklink/pages/home/home.dart';
 import 'package:driklink/pages/login/signup.dart';
 import 'package:driklink/pages/home/menupage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class termPage extends StatefulWidget {
   @override
@@ -27,19 +30,18 @@ class termsSign extends StatefulWidget {
 class WebViewExampleState extends State<termPage> {
   String murl =
       'https://drinklink.ae/oathygow/2020/12/Terms-of-Service-DrinkLink.pdf';
-  final flutterWebViewPlugin = FlutterWebviewPlugin();
+  // final flutterWebViewPlugin = FlutterWebviewPlugin();
 
   @override
   void initState() {
     super.initState();
-    final flutterWebviewPlugin = new FlutterWebviewPlugin();
-    flutterWebViewPlugin.onUrlChanged.listen((String url) {});
+    // final flutterWebviewPlugin = new FlutterWebviewPlugin();
+    // flutterWebViewPlugin.onUrlChanged.listen((String url) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: murl,
+      return Scaffold(
       appBar: new AppBar(
         backgroundColor: Color(0xFF2b2b61),
         title: new Text(
@@ -59,32 +61,55 @@ class WebViewExampleState extends State<termPage> {
           },
         ),
       ),
-      initialChild: Container(
-        color: Colors.white,
-        child: const Center(
-          child: Text('Waiting.....'),
-        ),
-      ),
+      body: FutureBuilder<Uint8List>(
+        future: _fetchPdfContent(murl),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return PdfPreview(
+              allowPrinting: false,
+              allowSharing: false,
+              canChangePageFormat: false,
+              initialPageFormat:
+                  PdfPageFormat(100 * PdfPageFormat.mm, 120 * PdfPageFormat.mm),
+              build: (format) => snapshot.data,
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      )
     );
   }
 }
+Future<Uint8List> _fetchPdfContent(final String url) async {
+    try {
+      final Response<List<int>> response = await Dio().get<List<int>>(
+        url,
+        options: Options(responseType: ResponseType.bytes),
+      );
+      return Uint8List.fromList(response.data);
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 
 class WebViewExampleState1 extends State<termsSign> {
   String murl =
       'https://drinklink.ae/oathygow/2020/12/Terms-of-Service-DrinkLink.pdf';
-  final flutterWebViewPlugin = FlutterWebviewPlugin();
+  // final flutterWebViewPlugin = FlutterWebviewPlugin();
 
   @override
   void initState() {
     super.initState();
-    final flutterWebviewPlugin = new FlutterWebviewPlugin();
-    flutterWebViewPlugin.onUrlChanged.listen((String url) {});
+    // final flutterWebviewPlugin = new FlutterWebviewPlugin();
+    // flutterWebViewPlugin.onUrlChanged.listen((String url) {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return WebviewScaffold(
-      url: murl,
+    return Scaffold(
       appBar: new AppBar(
         backgroundColor: Color(0xFF2b2b61),
         title: new Text(
@@ -112,12 +137,24 @@ class WebViewExampleState1 extends State<termsSign> {
           },
         ),
       ),
-      initialChild: Container(
-        color: Colors.white,
-        child: const Center(
-          child: Text('Waiting.....'),
-        ),
-      ),
+      body: FutureBuilder<Uint8List>(
+        future: _fetchPdfContent(murl),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return PdfPreview(
+              allowPrinting: false,
+              allowSharing: false,
+              canChangePageFormat: false,
+              initialPageFormat:
+                  PdfPageFormat(100 * PdfPageFormat.mm, 120 * PdfPageFormat.mm),
+              build: (format) => snapshot.data,
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      )
     );
   }
 }

@@ -58,11 +58,14 @@ class _helpignPageState extends State<help> {
   main() async {
     _loadPreview();
 
-    String username = 'leepe@drinklinkph.com';
-    String password = 'P@ssw0rd';
+    // String username = 'leepe@drinklinkph.com';
+    // String password = 'P@ssw0rd';
+
+    String username = 'leepeapp1@gmail.com';
+    String password = 'ioafduzyrulejpqj';
 
     final smtpServer =
-        SmtpServer('plesk5600.is.cc', username: username, password: password);
+        SmtpServer('smtp.gmail.com', username: username, password: password);
 
     final message = Message()
       ..from = Address(username, emailController.text)
@@ -123,8 +126,8 @@ class _helpignPageState extends State<help> {
     final rsult = await connection.send(message);
     if (rsult.toString().contains('Message successfully sent')) {
       Navigator.of(context).pop();
-      _messageDialog('Help Center', 'Your message was sent successfully!', '',
-          'Send Again');
+      _messageDialog('Help Center', 'Your message was sent successfully!',
+          'Close', 'Send Again');
       _clear();
     } else {
       Navigator.of(context).pop();
@@ -432,6 +435,23 @@ class _helpignPageState extends State<help> {
                 ),
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).pop();
+                  if (a == 'Close')
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                },
+              ),
+            if (a == 'close')
+              TextButton(
+                child: Text(
+                  a,
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                onPressed: () {
+                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
                 },
               ),
             if (b != '')
